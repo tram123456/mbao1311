@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      text-align: center;
+      background-color: #ffdde1;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .container {
+      text-align: center;
+    }
+    h1 {
+      font-size: 32px;
+      color: #d10000;
+      margin-bottom: 30px;
+      transition: opacity 0.5s ease;
+    }
+    .button-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 400px;
+      height: 200px;
+      margin: auto;
+      position: relative;
+    }
+    .answer {
+      width: 150px;
+      height: 50px;
+      line-height: 50px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s, background-color 0.3s, font-size 0.3s;
+      position: relative;
+    }
+    .yes-btn {
+      background-color: #4CAF50;
+    }
+    .no-btn {
+      background-color: #ff1744;
+      transition: transform 0.3s ease, left 0.3s ease, top 0.3s ease;
+    }
+    .answer:hover {
+      transform: scale(1.1);
+    }
+    .note {
+      font-size: 20px;
+      color: red;
+      font-weight: bold;
+      visibility: hidden;
+      opacity: 0;
+      margin-top: 20px;
+      transition: opacity 0.5s, font-size 0.5s, color 0.5s;
+    }
+    .cute-cat {
+      margin-top: 20px;
+      display: none;
+    }
+    .cute-cat img {
+      width: 150px;
+      animation: bounce 1s infinite ease-in-out;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="question">Em có đồng ý đón Valentine cùng anh không?</h1>
+    <div class="button-container">
+      <button class="answer yes-btn" onclick="showMessage()">CÓ</button>
+      <button class="answer no-btn" onmouseover="moveButton()">KHÔNG</button>
+    </div>
+    <div class="note" id="note">Yêu em nhìu!!!</div>
+    <div class="cute-cat" id="cute-cat">
+      <img src="f034d627f3b5da5fbcc7c434da12adfd.gif" alt="Cute Cat">
+    </div>
+  </div>
+
+  <script>
+    function showMessage() {
+      document.getElementById('question').style.opacity = "0";
+      document.querySelector('.button-container').style.display = "none";
+      const note = document.getElementById('note');
+      note.style.visibility = "visible";
+      note.style.opacity = "1";
+      note.style.fontSize = "40px";
+      document.getElementById('cute-cat').style.display = "block";
+    }
+
+    function moveButton() {
+      const noBtn = document.querySelector('.no-btn');
+      const container = document.querySelector('.container');
+      const containerRect = container.getBoundingClientRect();
+      const btnWidth = noBtn.offsetWidth;
+      const btnHeight = noBtn.offsetHeight;
+      
+      let randomX = Math.max(0, Math.random() * (containerRect.width - btnWidth));
+      let randomY = Math.max(0, Math.random() * (containerRect.height - btnHeight));
+      
+      noBtn.style.position = "absolute";
+      noBtn.style.left = `${randomX}px`;
+      noBtn.style.top = `${randomY}px`;
+    }
+  </script>
+</body>
+</html>
